@@ -1,0 +1,151 @@
+-------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /DatasetConstruction/ncdb1970merge.
+> log
+  log type:  text
+ opened on:   2 Jun 2015, 10:30:48
+
+. 
+. * merge variables from NCDB_1970to2000_NATIONALALL_whtblk1980vars.dta & NCDB_1970to2000_NATIONALALL_whtblk1
+> 980vars2.dta
+. * first file (vars) includes geo2000, trctpop7, trctpop8, shrwht8n, shrwht8, shrblk8n, shrblk8, 
+. *                                                        shrnhw8n, shrnhw8, shrnhb8n, shrnhb8
+. * second file (vars2) includes geo2000, shrwht7n, shrblk7n, shrhsp7n, shrhsp7, shrwht8n, shrblk8n,
+. *                                                          shrnhw8n, shrnhb8, msacma99
+. 
+. use "$source/NCDB_1970to2000_NATIONALALL_whtblk1980vars"
+
+. keep geo2000 shrwht8n shrnhw8n shrblk8n shrnhb8n trctpop7 trctpop8
+
+. sort geo2000
+
+. save `t'
+file /var/folders/nq/4vdr00vj27q9dnxg8fs25frh0000gn/T//S_17327.000001 saved
+
+. 
+. use "$source/NCDB_1970to2000_NATIONALALL_whtblk1980vars2"
+
+. keep geo2000 shrwht7n shrblk7n shrhsp7n msacma99
+
+. sort geo2000
+
+. merge 1:1 geo2000 using `t'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                            65,443  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. * change geo2000 to string variable to prepare for the 2010 harmonization do file
+. tostring geo2000, gen(geo2000n) format(%011.0f)
+geo2000n generated as str11
+
+. codebook geo2000n
+
+-------------------------------------------------------------------------------------------------------------
+geo2000n                                                                                              GEO2000
+-------------------------------------------------------------------------------------------------------------
+
+                  type:  string (str11)
+
+         unique values:  65443                    missing "":  0/65443
+
+              examples:  "12039020400"
+                         "24005411101"
+                         "36029003902"
+                         "42101012700"
+
+. list geo2000n in 1/20
+
+     +-------------+
+     |    geo2000n |
+     |-------------|
+  1. | 01001020100 |
+  2. | 01001020200 |
+  3. | 01001020300 |
+  4. | 01001020400 |
+  5. | 01001020500 |
+     |-------------|
+  6. | 01001020600 |
+  7. | 01001020700 |
+  8. | 01001020800 |
+  9. | 01001020900 |
+ 10. | 01001021000 |
+     |-------------|
+ 11. | 01001021100 |
+ 12. | 01003010100 |
+ 13. | 01003010200 |
+ 14. | 01003010300 |
+ 15. | 01003010400 |
+     |-------------|
+ 16. | 01003010500 |
+ 17. | 01003010600 |
+ 18. | 01003010701 |
+ 19. | 01003010703 |
+ 20. | 01003010704 |
+     +-------------+
+
+. d
+
+Contains data from /SourceData/NCDB_1970to2000_N
+> ATIONALALL_whtblk1980vars2.dta
+  obs:        65,443                          
+ vars:            12                          21 Aug 2012 14:42
+ size:     2,944,935                          
+-------------------------------------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------------------------------------
+geo2000         double  %10.0g                GEO2000
+geo2000n        str11   %11s                  GEO2000
+shrwht7n        long    %12.0g                SHRWHT7N
+shrblk7n        int     %8.0g                 SHRBLK7N
+shrhsp7n        int     %8.0g                 SHRHSP7N
+msacma99        int     %8.0g                 MSACMA99
+trctpop7        long    %12.0g                TRCTPOP7
+trctpop8        long    %12.0g                TRCTPOP8
+shrwht8n        int     %8.0g                 SHRWHT8N
+shrblk8n        int     %8.0g                 SHRBLK8N
+shrnhw8n        int     %8.0g                 SHRNHW8N
+shrnhb8n        int     %8.0g                 SHRNHB8N
+-------------------------------------------------------------------------------------------------------------
+Sorted by:  geo2000
+     Note:  dataset has changed since last saved
+
+. sum
+
+    Variable |       Obs        Mean    Std. Dev.       Min        Max
+-------------+--------------------------------------------------------
+     geo2000 |     65443    2.81e+10    1.56e+10   1.00e+09   5.60e+10
+    geo2000n |         0
+    shrwht7n |     65443    1964.407    2058.779          0      38125
+    shrblk7n |     65443    266.7114    929.8271          0      17067
+    shrhsp7n |     65443    134.3764    441.8269          0      10882
+-------------+--------------------------------------------------------
+    msacma99 |     65443    5770.529    3085.895         40       9999
+    trctpop7 |     65443    2261.886     2242.68          0      49710
+    trctpop8 |     65443     2766.55    2107.306          0      40845
+    shrwht8n |     65443    2273.635    1927.645          0      23136
+    shrblk8n |     65443    343.3465     924.384          0      17295
+-------------+--------------------------------------------------------
+    shrnhw8n |     65443    2157.263    1890.516          0      22098
+    shrnhb8n |     65443    338.1658    913.5272          0      17144
+
+. 
+. save "$data/ncdb1970merge", replace
+(note: file /Datasets/ncdb1970merge.dta not foun
+> d)
+file /Datasets/ncdb1970merge.dta saved
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /DatasetConstruction/ncdb1970merge.
+> log
+  log type:  text
+ closed on:   2 Jun 2015, 10:30:49
+-------------------------------------------------------------------------------------------------------------

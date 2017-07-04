@@ -1,0 +1,520 @@
+-------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  AnalysisFiles/4metro_mp4.log
+  log type:  text
+ opened on:   2 Jun 2015, 12:18:03
+
+. 
+. * 4metro_mp4.do
+. * Select analytic sample of 4 metros (CHI, NY, LA, HOU)
+. * Prepare file for Mplus
+. * NOTE: set to missing tract-years with <100 ppl; remove cases missing data for all 5 census years
+. 
+. * Select 4 metros
+. use "$data/pcn02.dta"
+
+. d
+
+Contains data from Datasets/pcn02.dta
+  obs:        74,002                          
+ vars:            60                          2 Jun 2015 11:44
+ size:    21,016,568                          
+-------------------------------------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------------------------------------
+trtid10         double  %10.0g                
+trctpop7        double  %12.0g                (sum) trctpop7
+tractid         double  %10.0g                
+state           str2    %2s                   
+county          str33   %33s                  
+tract           str20   %20s                  
+placefp10       long    %12.0g                
+cbsa10          long    %12.0g                
+metdiv10        long    %12.0g                
+ccflag10        byte    %8.0g                 
+pop70           float   %9.0g                 
+asian70         float   %9.0g                 
+pop80           float   %9.0g                 
+nhwht80         float   %9.0g                 
+nhblk80         float   %9.0g                 
+asian80         float   %9.0g                 
+hisp80          float   %9.0g                 
+pop90           float   %9.0g                 
+nhwht90         float   %9.0g                 
+nhblk90         float   %9.0g                 
+asian90         float   %9.0g                 
+hisp90          float   %9.0g                 
+pop00           float   %9.0g                 
+nhwht00         float   %9.0g                 
+nhblk00         float   %9.0g                 
+asian00         float   %9.0g                 
+hisp00          float   %9.0g                 
+pop10           long    %12.0g                
+nhwht10         int     %8.0g                 
+nhblk10         int     %8.0g                 
+asian10         int     %8.0g                 
+hisp10          int     %8.0g                 
+nhwht70         float   %9.0g                 Number non-Latino white; 1970 (estimated)
+nhblk70         float   %9.0g                 Number non-Latino black; 1970 (estimated)
+hisp70          float   %9.0g                 
+wbha70          float   %9.0g                 Total residents that are white, black, Hispanic, Asian:70
+wbha80          float   %9.0g                 Total residents that are white, black, Hispanic, Asian:80
+wbha90          float   %9.0g                 Total residents that are white, black, Hispanic, Asian:90
+wbha00          float   %9.0g                 Total residents that are white, black, Hispanic, Asian:00
+wbha10          float   %9.0g                 Total residents that are white, black, Hispanic, Asian:10
+pw70            float   %9.0g                 tract proportion nhw70
+pb70            float   %9.0g                 tract proportion nhb70
+ph70            float   %9.0g                 tract proportion hisp70
+pa70            float   %9.0g                 tract proportion asian70
+pw80            float   %9.0g                 tract proportion nhw80
+pb80            float   %9.0g                 tract proportion nhb80
+ph80            float   %9.0g                 tract proportion hisp80
+pa80            float   %9.0g                 tract proportion asian80
+pw90            float   %9.0g                 tract proportion nhw90
+pb90            float   %9.0g                 tract proportion nhb90
+ph90            float   %9.0g                 tract proportion hisp90
+pa90            float   %9.0g                 tract proportion asian90
+pw00            float   %9.0g                 tract proportion nhw00
+pb00            float   %9.0g                 tract proportion nhb00
+ph00            float   %9.0g                 tract proportion hisp00
+pa00            float   %9.0g                 tract proportion asian00
+pw10            float   %9.0g                 tract proportion nhw10
+pb10            float   %9.0g                 tract proportion nhb10
+ph10            float   %9.0g                 tract proportion hisp10
+pa10            float   %9.0g                 tract proportion asian10
+-------------------------------------------------------------------------------------------------------------
+Sorted by:  tractid
+
+. sum
+
+    Variable |       Obs        Mean    Std. Dev.       Min        Max
+-------------+--------------------------------------------------------
+     trtid10 |     72693    2.78e+10    1.58e+10   1.00e+09   5.60e+10
+    trctpop7 |     72693    2035.908    2122.126          0   31931.04
+     tractid |     74002    2.84e+10    1.65e+10   1.00e+09   7.22e+10
+       state |         0
+      county |         0
+-------------+--------------------------------------------------------
+       tract |         0
+   placefp10 |     72693    57514.99    32376.85        100      99999
+      cbsa10 |     72693    35752.45    21224.02      10020      99999
+    metdiv10 |     72693    82132.39    30519.35      13644      99999
+    ccflag10 |     72693    .3885794    .4874307          0          1
+-------------+--------------------------------------------------------
+       pop70 |     52758    2810.176    2073.874          0   34515.09
+     asian70 |     52758    34.29554    180.2965          0   9272.823
+       pop80 |     59187    3059.369    1791.164          0    26728.7
+     nhwht80 |     59187    2379.733    1681.295          0      16428
+     nhblk80 |     59187    374.1318    944.4271          0   12957.42
+-------------+--------------------------------------------------------
+     asian80 |     59187    57.06045    214.9019          0   8449.822
+      hisp80 |     59187    224.5517      556.12          0   12262.96
+       pop90 |     72693     3419.75    1625.195          0   35721.33
+     nhwht90 |     72693    2586.936    1582.162          0   21560.72
+     nhblk90 |     72693     401.559    853.6464          0      12121
+-------------+--------------------------------------------------------
+     asian90 |     72693    95.81474    269.0018          0       7899
+      hisp90 |     72693    307.3556    701.4777          0   13873.31
+       pop00 |     72693    3871.376    1601.656          0   36205.77
+     nhwht00 |     72693    2676.362    1618.367          0   20618.81
+     nhblk00 |     72693     486.756    878.1573          0      14039
+-------------+--------------------------------------------------------
+     asian00 |     72693     162.699    373.2532          0       9491
+      hisp00 |     72693    485.6839    910.5947          0      13391
+       pop10 |     74002    4222.471    1982.711          0      37452
+     nhwht10 |     74002    2659.989      1826.1          0      28555
+     nhblk10 |     74002    542.2663    884.3162          0      15910
+-------------+--------------------------------------------------------
+     asian10 |     74002    229.9072    480.5514          0      11234
+      hisp10 |     74002    731.9539    1188.849          0      15420
+     nhwht70 |     52758    2267.059    1856.341          0      30278
+     nhblk70 |     52758    327.1433    1034.224          0      15469
+      hisp70 |     72693    120.9453    406.9836          0      10623
+-------------+--------------------------------------------------------
+      wbha70 |     74002    1992.732    2149.167          0   34523.03
+      wbha80 |     74002    2427.782    2002.503          0      26323
+      wbha90 |     74002    3331.671    1668.488          0   35048.88
+      wbha00 |     74002     3744.08    1655.473          0   35335.96
+      wbha10 |     74002    4164.116    1972.114          0      36737
+-------------+--------------------------------------------------------
+        pw70 |     52525     .824938    .2563638          0          1
+        pb70 |     52525    .0876231    .2048448          0          1
+        ph70 |     52535    .0723019    .1499649          0          1
+        pa70 |     52525    .0153137    .0716416          0          1
+        pw80 |     58962    .7985385    .2672874          0          1
+-------------+--------------------------------------------------------
+        pb80 |     58962    .1077469    .2207925          0   .9970326
+        ph80 |     58962    .0753938     .147946          0          1
+        pa80 |     58962    .0183208     .056006          0          1
+        pw90 |     72554    .7702724    .2766295          0          1
+        pb90 |     72554     .115091    .2176014          0          1
+-------------+--------------------------------------------------------
+        ph90 |     72554    .0881883    .1664912          0          1
+        pa90 |     72554    .0264483    .0637802          0   .9956522
+        pw00 |     72563    .7055406    .2979578          0          1
+        pb00 |     72563    .1334264    .2266343          0          1
+        ph00 |     72563    .1206101    .1929363          0          1
+-------------+--------------------------------------------------------
+        pa00 |     72563    .0404229    .0820696          0        .95
+        pw10 |     73424     .640911    .3103312          0          1
+        pb10 |     73424    .1422925    .2239923          0          1
+        ph10 |     73424    .1655559    .2285299          0          1
+        pa10 |     73424    .0512406    .0937875          0          1
+
+. keep if (cbsa10==35620|cbsa10==31100|cbsa10==16980|cbsa10==26420)
+(63283 observations deleted)
+
+. keep pop* nhwht* nhblk* hisp* asian* pw* pb* ph* pa* wbha* cbsa10 trtid10
+
+. 
+. * Prepare data for Mplus
+. * change year suffix from 70,80,90,00,10 to 0,1,2,3,4
+. foreach x of varlist *70 {
+  2. local y`x'=regexr("`x'", "70", "0")
+  3. rename `x' `y`x''
+  4. }
+
+. foreach x of varlist *80 {
+  2. local y`x'=regexr("`x'", "80", "1")
+  3. rename `x' `y`x''
+  4. }
+
+. foreach x of varlist *90 {
+  2. local y`x'=regexr("`x'", "90", "2")
+  3. rename `x' `y`x''
+  4. }
+
+. foreach x of varlist *00 {
+  2. local y`x'=regexr("`x'", "00", "3")
+  3. rename `x' `y`x''
+  4. }
+
+. foreach x of varlist *10 {
+  2. local y`x'=regexr("`x'", "10", "4")
+  3. rename `x' `y`x''
+  4. }
+
+. 
+. ren trtid4 trtid10
+
+. 
+. * transformation
+. foreach yr in 0 1 2 3 4 {
+  2.         foreach race in w b h a {
+  3.                 gen p`race't`yr' = asin(sqrt(p`race'`yr'))
+  4.         }       
+  5. }
+(255 missing values generated)
+(255 missing values generated)
+(255 missing values generated)
+(255 missing values generated)
+(78 missing values generated)
+(78 missing values generated)
+(78 missing values generated)
+(78 missing values generated)
+(16 missing values generated)
+(16 missing values generated)
+(16 missing values generated)
+(16 missing values generated)
+(13 missing values generated)
+(13 missing values generated)
+(13 missing values generated)
+(13 missing values generated)
+(36 missing values generated)
+(36 missing values generated)
+(36 missing values generated)
+(36 missing values generated)
+
+. 
+. * Delete 9 cases with missing on all r/e proportion variables
+. gen missall=0
+
+. replace missall=1 if  (pwt0==. & pbt0==. & pht0==. & pat0==. ///
+>                                          & pwt1==. & pbt1==. & pht1==. & pat1==. ///
+>                                          & pwt2==. & pbt2==. & pht2==. & pat2==. ///
+>                                          & pwt3==. & pbt3==. & pht3==. & pat3==. /// 
+>                                          & pwt4==. & pbt4==. & pht4==. & pat4==.)
+(9 real changes made)
+
+. format trtid10 %15.0g
+
+. list trtid10 cbsa4 if missall==1
+
+       +---------------------+
+       |     trtid10   cbsa4 |
+       |---------------------|
+ 2319. |  6037980005   31100 |
+ 2320. |  6037980006   31100 |
+ 4935. | 17197980000   16980 |
+ 5097. | 18127980002   16980 |
+ 8289. | 36081010701   35620 |
+       |---------------------|
+ 8446. | 36081033100   35620 |
+ 8653. | 36081065501   35620 |
+ 8779. | 36081099900   35620 |
+ 8793. | 36081107202   35620 |
+       +---------------------+
+
+. drop if missall==1
+(9 observations deleted)
+
+. drop missall
+
+. 
+. * Set to missing any tract with population below given cutoff for given year
+. global yrs 0 1 2 3 4 
+
+. foreach y in $yrs {
+  2.         gen flg1`y'=1 if wbha`y'<1
+  3.         gen flg100`y'=1 if wbha`y'<100
+  4.         }
+(10454 missing values generated)
+(10246 missing values generated)
+(10628 missing values generated)
+(10544 missing values generated)
+(10696 missing values generated)
+(10641 missing values generated)
+(10701 missing values generated)
+(10645 missing values generated)
+(10683 missing values generated)
+(10639 missing values generated)
+
+. gen allmiss=1 if wbha0==. & wbha1==. & wbha2==. & wbha3==. & wbha4==.
+(10710 missing values generated)
+
+. tab allmiss, missing
+
+    allmiss |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          . |     10,710      100.00      100.00
+------------+-----------------------------------
+      Total |     10,710      100.00
+
+. tab1 flg1*
+
+-> tabulation of flg10  
+
+      flg10 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        256      100.00      100.00
+------------+-----------------------------------
+      Total |        256      100.00
+
+-> tabulation of flg1000  
+
+    flg1000 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        464      100.00      100.00
+------------+-----------------------------------
+      Total |        464      100.00
+
+-> tabulation of flg11  
+
+      flg11 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         82      100.00      100.00
+------------+-----------------------------------
+      Total |         82      100.00
+
+-> tabulation of flg1001  
+
+    flg1001 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        166      100.00      100.00
+------------+-----------------------------------
+      Total |        166      100.00
+
+-> tabulation of flg12  
+
+      flg12 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         14      100.00      100.00
+------------+-----------------------------------
+      Total |         14      100.00
+
+-> tabulation of flg1002  
+
+    flg1002 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         69      100.00      100.00
+------------+-----------------------------------
+      Total |         69      100.00
+
+-> tabulation of flg13  
+
+      flg13 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |          9      100.00      100.00
+------------+-----------------------------------
+      Total |          9      100.00
+
+-> tabulation of flg1003  
+
+    flg1003 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         65      100.00      100.00
+------------+-----------------------------------
+      Total |         65      100.00
+
+-> tabulation of flg14  
+
+      flg14 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         27      100.00      100.00
+------------+-----------------------------------
+      Total |         27      100.00
+
+-> tabulation of flg1004  
+
+    flg1004 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         71      100.00      100.00
+------------+-----------------------------------
+      Total |         71      100.00
+
+. 
+. foreach y in $yrs {
+  2.   replace wbha`y'=. if flg100`y'==1
+  3. }
+(464 real changes made, 464 to missing)
+(166 real changes made, 166 to missing)
+(69 real changes made, 69 to missing)
+(65 real changes made, 65 to missing)
+(71 real changes made, 71 to missing)
+
+. 
+. * Generate flag for tracts w/ <100ppl in all five waves & drop them
+. gen fivemiss=1 if flg1000==1 & flg1001==1 & flg1002==1 & flg1003==1 & flg1004==1 
+(10681 missing values generated)
+
+. tab fivemiss, missing
+
+   fivemiss |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         29        0.27        0.27
+          . |     10,681       99.73      100.00
+------------+-----------------------------------
+      Total |     10,710      100.00
+
+. drop if fivemiss==1
+(29 observations deleted)
+
+.   
+. * Generate new ID variable (idnew=_n)
+. compress
+  flg10 was float now byte
+  flg1000 was float now byte
+  flg11 was float now byte
+  flg1001 was float now byte
+  flg12 was float now byte
+  flg1002 was float now byte
+  flg13 was float now byte
+  flg1003 was float now byte
+  flg14 was float now byte
+  flg1004 was float now byte
+  allmiss was float now byte
+  fivemiss was float now byte
+  (384,516 bytes saved)
+
+. sort trtid10
+
+. gen idnew=_n
+
+. 
+. * Keep variables
+. keep idnew trtid10 cbsa4  p*t0 p*t1 p*t2 p*t3 p*t4
+
+. order idnew trtid10 cbsa4 p*t0 p*t1 p*t2 p*t3 p*t4 
+
+. 
+. save `t'
+file /var/folders/nq/4vdr00vj27q9dnxg8fs25frh0000gn/T//S_17327.000001 saved
+
+. 
+. * prepare entire file to save
+. save "$data/4metro_mp4", replace
+(note: file Datasets/4metro_mp4.dta not found)
+file Datasets/4metro_mp4.dta saved
+
+. d
+
+Contains data from Datasets/4metro_mp4.dta
+  obs:        10,681                          
+ vars:            23                          2 Jun 2015 12:18
+ size:     1,025,376                          
+-------------------------------------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------------------------------------
+idnew           float   %9.0g                 
+trtid10         double  %15.0g                
+cbsa4           long    %12.0g                
+pwt0            float   %9.0g                 
+pbt0            float   %9.0g                 
+pht0            float   %9.0g                 
+pat0            float   %9.0g                 
+pwt1            float   %9.0g                 
+pbt1            float   %9.0g                 
+pht1            float   %9.0g                 
+pat1            float   %9.0g                 
+pwt2            float   %9.0g                 
+pbt2            float   %9.0g                 
+pht2            float   %9.0g                 
+pat2            float   %9.0g                 
+pwt3            float   %9.0g                 
+pbt3            float   %9.0g                 
+pht3            float   %9.0g                 
+pat3            float   %9.0g                 
+pwt4            float   %9.0g                 
+pbt4            float   %9.0g                 
+pht4            float   %9.0g                 
+pat4            float   %9.0g                 
+-------------------------------------------------------------------------------------------------------------
+Sorted by:  trtid10
+
+. sum
+
+    Variable |       Obs        Mean    Std. Dev.       Min        Max
+-------------+--------------------------------------------------------
+       idnew |     10681        5341    3083.483          1      10681
+     trtid10 |     10681    2.50e+10    1.46e+10   6.04e+09   5.51e+10
+       cbsa4 |     10681    29615.42    7053.115      16980      35620
+        pwt0 |     10446    1.107217    .3797513          0   1.570796
+        pbt0 |     10446    .2263863     .343806          0   1.537959
+-------------+--------------------------------------------------------
+        pht0 |     10446    .2894061    .2255158          0   1.537153
+        pat0 |     10446    .0920737     .075972          0   1.570796
+        pwt1 |     10617    .9876825    .4150192          0   1.570796
+        pbt1 |     10617    .2937259    .3709811          0   1.516296
+        pht1 |     10617    .3456534    .2597143          0   1.570796
+-------------+--------------------------------------------------------
+        pat1 |     10617    .1446886    .1031129          0   1.154735
+        pwt2 |     10678    .8726567    .4210225          0   1.570796
+        pbt2 |     10678    .3208683    .3607926          0   1.570796
+        pht2 |     10678    .4180463    .2916832          0   1.570796
+        pat2 |     10678    .2022045    .1422622          0   1.205558
+-------------+--------------------------------------------------------
+        pwt3 |     10679    .7608032    .4132503          0   1.570796
+        pbt3 |     10679    .3480493    .3534033          0   1.570796
+        pht3 |     10679    .4866753    .3140738          0   1.452983
+        pat3 |     10679    .2494055    .1750839          0   1.270995
+        pwt4 |     10668    .6915224    .3888894          0   1.570796
+-------------+--------------------------------------------------------
+        pbt4 |     10668    .3502857     .330655          0   1.570796
+        pht4 |     10668    .5417681    .3141752          0   1.570796
+        pat4 |     10668    .2829672    .1967821          0   1.239641
+
+. stata2mplus using 4metro_mp4, replace
+(note: file 4metro_mp4.dat not found)
+Looks like this was a success.
+To convert the file to mplus, start mplus and run
+the file 4metro_mp4.inp
+
+. 
+. log close
+      name:  <unnamed>
+       log:  AnalysisFiles/4metro_mp4.log
+  log type:  text
+ closed on:   2 Jun 2015, 12:18:03
+-------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,46 @@
+Title: GMM for 4 cities (CHI,HOU,LA,NY),
+         estimates for i,s,q,c  for b,h,a (w as ref),
+         10 classes;
+
+  Data:
+    File is 4metro_mp4.dat ;
+  Variable:
+    Names are
+       idnew cbsa4
+       pwt0 pbt0 pht0 pat0
+       pwt1 pbt1 pht1 pat1
+       pwt2 pbt2 pht2 pat2
+       pwt3 pbt3 pht3 pat3
+       pwt4 pbt4 pht4 pat4 ;
+    Missing are all (-9999) ;
+    Usevariables are
+       pbt0 pht0 pat0
+       pbt1 pht1 pat1
+       pbt2 pht2 pat2
+       pbt3 pht3 pat3
+       pbt4 pht4 pat4 ;
+  AUXILIARY = idnew ;
+  CLASSES = c(10);
+  Analysis:
+           TYPE = MIXTURE;
+           STARTS = 1000 250;
+           Processor=1(starts);
+
+  MODEL:
+     %OVERALL%
+      ib sb qb cb | pbt0@0 pbt1@1 pbt2@2 pbt3@3 pbt4@4 ;
+      ih sh qh ch | pht0@0 pht1@1 pht2@2 pht3@3 pht4@4 ;
+  	  ia sa qa ca | pat0@0 pat1@1 pat2@2 pat3@3 pat4@4 ;
+  	
+      ib ih ia sb@0 sh@0 sa@0 qb@0 qh@0 qa@0 cb@0 ch@0 ca@0;
+
+
+  PLOT: type=plot3;
+
+   series = pbt0(0) pbt1(1) pbt2(2) pbt3(3) pbt4(4)
+            pht0(5) pht1(6) pht2(7) pht3(8) pht4(9)
+  	      pat0(10) pat1(11) pat2(12) pat3(13) pat4(14) ;
+
+  SAVEDATA:  FILE IS 4metro_mp4_gmm1_c10.txt;
+             SAVE = CPROB;
+  OUTPUT: tech1 tech4 tech11 ;
